@@ -10,6 +10,17 @@ const sequelize = new Sequelize({
   storage: 'database.sqlite'
 });
 
+const defineModels = require('./models');
+const { Post, Comment } = defineModels(sequelize);
+
+// Sincronizar modelos con la base de datos
+sequelize.sync({ force: true })
+  .then(() => console.log('Database & tables created!'))
+  .catch(err => console.error('Sync error:', err));
+
+// Importar rutas
+require('./routes')(app, { Post, Comment });
+
 // Test connection
 sequelize.authenticate()
   .then(() => console.log('Connected to database'))
