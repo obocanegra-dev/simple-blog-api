@@ -22,7 +22,7 @@ npm install
 
 3. Iniciar servidor:
 ```bash
-npm start
+node index.js
 ```
 
 ## Uso
